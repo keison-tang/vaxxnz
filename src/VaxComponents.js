@@ -116,6 +116,33 @@ export const MonthContainer = styled.section`
   transition: all 0.3s;
 
   z-index: 1;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(1, 1fr);
+    button img {
+      align-self: center;
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+`;
+
+export const CalendarDayDiv = styled.div.attrs((props) => ({
+  //days of week are between 0-6 but grid-cols start at 1
+  dayOfWeek: props.dayOfWeek ? props.dayOfWeek + 1 : 1,
+}))`
+  @media screen and (min-width: 1024px) {
+    :first-child {
+      grid-column: ${(props) => props.dayOfWeek};
+    }
+  }
+
   button {
     box-sizing: border-box;
     font-family: inherit;
@@ -171,21 +198,6 @@ export const MonthContainer = styled.section`
       height: 1rem;
       bottom: 0;
       opacity: 0.7;
-    }
-  }
-
-  @media screen and (max-width: 1024px) {
-    grid-template-columns: repeat(5, 1fr);
-  }
-  @media screen and (max-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media screen and (max-width: 500px) {
-    grid-template-columns: repeat(1, 1fr);
-    button img {
-      align-self: center;
-      height: 2rem;
-      width: 2rem;
     }
   }
 `;
